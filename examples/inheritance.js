@@ -44,6 +44,7 @@ var Filho = Father.extend({
             // accessing super prototype member
             Father.invoke_member(this, "hello"); // or
             Filho.super(this, "hello");
+            this.super("hello");
             
         },
     },

@@ -17,7 +17,20 @@ var PrototypeClass = {
         **/
         instanceof: function(cls){       
             return cls.prototype.isPrototypeOf(this);
+        },
+    
+        /**
+        * Invoca um membro do objeto/prototipo pai
+        * @param arguments(0) The member name
+        * @param arguments(1...) The member arguments
+        **/
+        super: function(){            
+            var arguments = [].splice.call(arguments,0);
+            var memberName = arguments[0];
+            var args = arguments.slice(1, arguments.length);
+            return this.class.super(this, memberName, args);         
         }
+
     },
 
     /**
@@ -26,6 +39,7 @@ var PrototypeClass = {
     create : function(){
         var instance = Object.create(this.prototype);
         instance.initialize.apply(instance, arguments);
+        instance.class = this;
         return instance;
     },
 
