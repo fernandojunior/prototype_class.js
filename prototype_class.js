@@ -27,7 +27,10 @@ var PrototypeClass = {
         super: function(){            
             var arguments = [].splice.call(arguments,0);
             var memberName = arguments[0];
-            var args = arguments.slice(1, arguments.length);
+            var args = [];
+            if (arguments.length > 1){
+                args = arguments.slice(1, arguments.length);
+            }
             return this.class.super(this, memberName, args);         
         }
 
@@ -38,8 +41,8 @@ var PrototypeClass = {
     **/
     create : function(){
         var instance = Object.create(this.prototype);
-        instance.initialize.apply(instance, arguments);
         instance.class = this;
+        instance.initialize.apply(instance, arguments);
         return instance;
     },
 
