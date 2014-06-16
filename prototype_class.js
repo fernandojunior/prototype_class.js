@@ -23,10 +23,11 @@ var PrototypeClass = {
         * Invoca um membro do objeto/prototipo pai
         * @param arguments(0) The member name
         * @param arguments(1...) The member arguments
+        * @test funcao esta instavel
         **/
         super: function(){            
             var arguments = [].splice.call(arguments,0);
-            var memberName = arguments[0];
+            var memberName = arguments[0];            
             var args = [];
             if (arguments.length > 1){
                 args = arguments.slice(1, arguments.length);
