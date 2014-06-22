@@ -9,13 +9,13 @@ var PrototypeClass = {
     * Define as propriedades e comportamentos do objeto
     **/
     prototype : {
-        initialize: function (){
+        initialize: function () {
         },
 
         /**
         * Verifica se o objeto eh inctancia de uma clase
         **/
-        instanceof: function(cls){       
+        instanceof: function (cls) {
             return cls.prototype.isPrototypeOf(this);
         },
     
@@ -25,14 +25,14 @@ var PrototypeClass = {
         * @param arguments(1...) The member arguments
         * @test funcao esta instavel
         **/
-        super: function(){            
-            var arguments = [].splice.call(arguments,0);
-            var memberName = arguments[0];            
+        super: function () {
+            var arguments = [].splice.call(arguments, 0);
+            var memberName = arguments[0];
             var args = [];
-            if (arguments.length > 1){
+            if (arguments.length > 1) {
                 args = arguments.slice(1, arguments.length);
             }
-            return this.class.super(this, memberName, args);         
+            return this.class.super(this, memberName, args);
         }
 
     },
@@ -40,7 +40,7 @@ var PrototypeClass = {
     /**
     * Constroi e inicializa o objeto
     **/
-    create : function(){
+    create : function () {
         var instance = Object.create(this.prototype);
         instance.class = this;
         instance.initialize.apply(instance, arguments);
@@ -51,10 +51,10 @@ var PrototypeClass = {
     * Extende a classe com as propriedades no estilo descritivo
     * @param propertyDescriptors property Descriptors (dict) 
     **/
-    dextend: function(propertyDescriptors){
+    dextend: function (propertyDescriptors) {
 
         if (typeof propertyDescriptors.prototype !== "undefined"
-                && typeof propertyDescriptors.prototype.value !== "undefined"){
+                && typeof propertyDescriptors.prototype.value !== "undefined") {
             propertyDescriptors.prototype.value = Object.create(this.prototype, propertyDescriptors.prototype.value);
         }
 
@@ -63,17 +63,27 @@ var PrototypeClass = {
     },
 
     /**
-    * Extende a prototype classe
+    * Extende a classe
     * @param property As novas propriedades
     **/
-    extend: function(properties){            
+    extend: function (properties) {
         return this.dextend(this.descriptoralize(properties));
+    },
+
+    /**
+    * Extende apenas o prototipo da classe
+    * @param prototype_properties As novas propriedades
+    **/
+    pextend: function (prototype_properties) {
+        return this.extend({
+            prototype: prototype_properties
+        });
     },
 
     /**
      * Incova um membro do objeto/prototipo
     **/
-    invoke_member: function(obj, memberName, args){
+    invoke_member: function (obj, memberName, args) {
         var member = this.prototype[memberName];
         return member.apply(obj, args); // valor de retorno caso o membro seja "retornable"
     },
@@ -81,7 +91,7 @@ var PrototypeClass = {
     /**
      * Invoca um membro da classe
     **/
-    invoke_class_member: function(memberName, args){
+    invoke_class_member: function (memberName, args) {
         var member = this[memberName];
         return member.apply(args); // valor de retorno caso o membro seja "retornable"
     },
@@ -89,7 +99,7 @@ var PrototypeClass = {
     /**
     * Invoca um membro do objeto/prototipo pai
     **/
-    super: function(obj, memberName, args){
+    super: function (obj, memberName, args) {
         var super_class = Object.getPrototypeOf(this);
         return super_class.invoke_member(obj, memberName, args); // valor de retorno caso o membro seja "retornable"
     },
@@ -97,7 +107,7 @@ var PrototypeClass = {
     /**
     * Invoca um membro da classe pai
     **/
-    super_class_member: function(memberName, args){
+    super_class_member: function (memberName, args) {
         var super_class = Object.getPrototypeOf(this);
         return super_class.invoke_class_member(memberName, args); // valor de retorno caso o membro seja "retornable"
     },
@@ -105,16 +115,16 @@ var PrototypeClass = {
     /**
     * Verifica se o prototipo da classe corresponde ao prototipo do objeto
     **/
-    isPrototypeOf: function(obj){
+    isPrototypeOf: function (obj) {
         return this.prototype.isPrototypeOf(obj);
     },
 
     /**
     * Converte as propriedades de uma classe para o estilo descritivo
     **/
-    descriptoralize: function(class_properties){
+    descriptoralize: function (class_properties) {
 
-        for(var key in class_properties.prototype){
+        for (var key in class_properties.prototype) {
             class_properties.prototype[key] = {
                 value: class_properties.prototype[key],
                 enumerable: true,
