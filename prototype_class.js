@@ -66,8 +66,24 @@ var PrototypeClass = {
     * Extende a classe
     * @param property As novas propriedades
     **/
-    extend: function (properties) {
-        return this.dextend(this.descriptoralize(properties));
+    extend: function () {
+
+        if (arguments.length == 2) {
+            var type = arguments[0];
+            var properties = arguments[1];
+
+            if (type === "prototype") {
+                return this.pextend(properties);
+            } else if (type === "descriptors") {
+                return this.dextend(properties);
+            } else if (type === "normal") {
+                return this.dextend(this.descriptoralize(properties));
+            }
+
+        } else {
+            var properties = arguments[0];
+            return this.dextend(this.descriptoralize(properties));
+        }
     },
 
     /**
