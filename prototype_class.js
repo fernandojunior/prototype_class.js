@@ -69,14 +69,12 @@ var PrototypeClass = {
     extend: function () {
 
         if (arguments.length == 2) {
-            var type = arguments[0];
+            var options = arguments[0];
             var properties = arguments[1];
 
-            if (type === "prototype") {
+            if (options.scope !== "undefined" && options.scope === "prototype") {
                 return this.pextend(properties);
-            } else if (type === "descriptors") {
-                return this.dextend(properties);
-            } else if (type === "normal") {
+            } else if (options.scope !== "undefined" && options.scope === "all") {
                 return this.dextend(this.descriptoralize(properties));
             }
 
