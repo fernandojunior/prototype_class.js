@@ -12,11 +12,18 @@ Features
     - Polymorphism
     - Constructor/initializer
     - Class method concept from python
-     
+
+Version
+-------
+
+Switch the branch to get the current version.
+
+Current version: v0.0.1
+
 Use
 ---
 
-Just Load the script prototype_class.js or prototype_class.min.js in your html file. See full examples in "exameples" folder.
+Just Load the script prototype_class.js or prototype_class.min.js in your html file. See full examples in "examples" folder.
 
 Keywords
 --------

@@ -1,7 +1,5 @@
 /**
-* prototype_class.js
-* Simple JavaScript Oriented Object Programming Suporter.
-* version 1.0
+* prototype_class.js is a JavaScript library that provides oriented object programming features. It is based on Object and Property Descriptors of ECMA5.
 **/
 var PrototypeClass = {
 
