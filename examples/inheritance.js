@@ -1,71 +1,140 @@
-// Using  Inheritance and polymorphism concepts
+// An example using inheritance and polymorphism concepts
+
+/**
+* Father Class
+**/
 var Father = PrototypeClass.extend({
 
     prototype: {
 
-        // initializer
-        initialize: function (msg){
-            console.log("Init Father object. MSG: " + msg);
-        },
-
-        // property
+        /**
+         * Instance property
+        **/
         id: 100,
 
-        // method
+        /**
+         * Instance method
+        **/
         hello: function() {
-            console.log('Hello I am from object method of Father. My ID is ' + this.id); 
+            console.log('Father instance method (hello). My ID is ' + this.id); 
         },
 
+        /**
+         * Another instance method
+        **/
+        father_instance_method: function() {
+            console.log("Father instance method.");
+        }
+
     },
 
-    // class method
+    /**
+     * Class method
+    **/
     hello: function() {
-        console.log('Hello I am from class method of Father.'); 
+        console.log('Father class method (hello).'); 
     },
+
+    /**
+     * Another class method
+    **/
+    father_class_method: function() {
+        console.log("father class method");
+    }
 
 });
 
-// Extended Class
+Father.hello(); // call class method
+var father = Father.create("Aka"); // instantiating class
+father.hello(); // call instance method
+
+/**
+ * Extended Class from Father
+**/
 var Filho = Father.extend({
 
     prototype: {
 
-        // property overwrite
+        /**
+         * Instance property overwriting
+        **/
         id: 333,
 
-        // method overwrite
+        /**
+         * Instance method overwriting
+        **/
         hello: function() { 
-            console.log('hello I am from object method of class Filho'); 
 
-            // accessing super class member
-            Father.invoke_class_member("hello"); // or
-            Filho.super_class_member("hello");
-            
-            // accessing super prototype member
+            console.log('Filho instance method overwrite (hello).'); 
+
+            // examples how to acessing super members
+
+            console.log("Filho instance method -> Father class method.")
+            Father.father_class_method(); // or
+            Father.invoke_class_member("father_class_method"); // or
+            Filho.super_class_member("father_class_method");
+
+            console.log("Filho instance method -> Father instance method.")
             Father.invoke_member(this, "hello"); // or
             Filho.super(this, "hello");
-            this.super("hello"); // not stable function
-            
+
         },
+
+        /**
+         * Another instance method
+        **/
+        filho_instance_method: function () {
+            console.log("Filho instance member");
+        }
+
     },
 
-    // class method overwrite
+    /**
+     * Class method overwriting
+    **/
     hello: function(){
-        console.log("class method filho");
+        console.log("Filho class method (hello)");
     },
 
 });
 
-Father.hello();
-var father = Father.create("Aka");
-father.hello();
-
 Filho.hello();
 var filho = Filho.create("Junior");
-filho.hello();    
+filho.hello();
+console.log("\n");
 
+/**
+ * Extended Class (only prototype) from Filho
+**/
+var Neto = Filho.pextend({
+    id: 123,
+    hello: function() {
+
+        console.log('Neto instance method. My ID is ' + this.id); 
+
+        console.log("Neto instance method -> Father class method.")
+        Father.invoke_class_member("father_class_method"); // or
+        Filho.super_class_member("father_class_method");
+
+        console.log("Neto instance method -> Father instance method")
+        Father.invoke_member(this, "father_instance_method"); // or
+        Filho.super(this, "father_instance_method");
+
+        console.log("Neto instance method -> Filho instance method")
+        Filho.invoke_member(this, "filho_instance_method");
+        Neto.super(this, "filho_instance_method");
+
+    }
+});
+
+Neto.hello();
+var neto = Neto.create("Neto");
+neto.hello();
+console.log("\n");
+
+console.log("Asserts:");
 console.log(Filho.isPrototypeOf(filho)); // true
 console.log(filho.instanceof(Filho)); // true
 console.log(Father.isPrototypeOf(filho)); // true
 console.log(filho.instanceof(Father)); // true
-console.log(father.instanceof(typeof(""))); // false
+// console.log(father.instanceof(typeof(""))); // TypeError: cls.prototype is undefined

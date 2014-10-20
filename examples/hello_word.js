@@ -1,19 +1,37 @@
-// hello world class
+// An example how to use the lib.
+
+/**
+ * Hello World Class
+**/
 var HelloWorld = PrototypeClass.extend({
 
+    /**
+     * Dictionary to define instance properties and methods
+    **/
     prototype :{
 
-        // object/prototype property
+        /**
+         * Instance initializer
+        **/
+        initialize: function (msg){
+            console.log("Initializing..." + msg);
+        },
+
+        /**
+         * An instance property named hello
+        **/ 
         hello: "Hello"
     },
 
-    // class method
+    /**
+     * A class method named world
+    **/
     world: function(){
         console.log("World");
     }
 
 });
 
-var hw = HelloWorld.create(); // contructing and initializing
-console.log(hw.hello); // show object property
+var hw = HelloWorld.create("msg"); // contructing and initializing an instance
+console.log(hw.hello); // show instance property
 HelloWorld.world(); // call class mehtod
