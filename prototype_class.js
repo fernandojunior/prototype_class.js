@@ -73,21 +73,8 @@ var PrototypeClass = {
      * @param properties The members of the extended class
     **/
     extend: function () {
-
-        if (arguments.length == 2) {
-            var options = arguments[0];
-            var properties = arguments[1];
-
-            if (options.scope !== "undefined" && options.scope === "prototype") {
-                return this.extend_prototype(properties);
-            } else if (options.scope !== "undefined" && options.scope === "all") {
-                return this.dextend(this.descriptoralize(properties));
-            }
-
-        } else {
-            var properties = arguments[0];
-            return this.dextend(this.descriptoralize(properties));
-        }
+        var properties = arguments[0];
+        return this.dextend(this.descriptoralize(properties));
     },
 
     /**
