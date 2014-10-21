@@ -1,27 +1,34 @@
 /**
-* prototype_class.js is a JavaScript library that provides oriented object programming features. It is based on Object and Property Descriptors of ECMA5.
+ * prototype_class.js is a JavaScript library that provides oriented object
+ * programming features. It is based on Object and Property Descriptors of ECMA5.
+ * @author Fernando Felix do Nacimento Junior
 **/
 var PrototypeClass = {
 
     /**
-    * Define as propriedades e comportamentos do objeto
+    * Dictionary to define instance members (properties or methods)
     **/
     prototype : {
+
+        /**
+         * Initializes an instance
+        **/
         initialize: function () {
         },
 
         /**
-        * Verifica se o objeto eh inctancia de uma clase
+         * Verifies if current instance is a type of class
+         * @param cls The class that instance will be verified
         **/
         instanceof: function (cls) {
             return cls.prototype.isPrototypeOf(this);
         },
-    
+
         /**
-        * Invoca um membro do objeto/prototipo pai
-        * @param arguments(0) The member name
-        * @param arguments(1...) The member arguments
-        * @test funcao esta instavel
+         * Invokes an instance member from father class context
+         * @param arguments(0) The member name
+         * @param arguments(1...) The member arguments
+         * @deprecated not stable
         **/
         super: function () {
             var arguments = [].splice.call(arguments, 0);
@@ -36,9 +43,10 @@ var PrototypeClass = {
     },
 
     /**
-    * Constroi e inicializa o objeto
+     * Constructs and initializes an instance of this class
+     * @param arguments The arguments needed to initialize the instance
     **/
-    create : function () {
+    create: function () {
         var instance = Object.create(this.prototype);
         instance.class = this;
         instance.initialize.apply(instance, arguments);
@@ -46,23 +54,23 @@ var PrototypeClass = {
     },
 
     /**
-    * Extende a classe com as propriedades no estilo descritivo
-    * @param propertyDescriptors property Descriptors (dict) 
+     * Extends this class with members dictionary in descriptive style way
+     * @param properties The members of the extended class
     **/
-    dextend: function (propertyDescriptors) {
+    dextend: function (properties) {
 
-        if (typeof propertyDescriptors.prototype !== "undefined"
-                && typeof propertyDescriptors.prototype.value !== "undefined") {
-            propertyDescriptors.prototype.value = Object.create(this.prototype, propertyDescriptors.prototype.value);
+        if (typeof properties.prototype !== "undefined"
+                && typeof properties.prototype.value !== "undefined") {
+            properties.prototype.value = Object.create(this.prototype, properties.prototype.value);
         }
 
-        return Object.create(this, propertyDescriptors);
+        return Object.create(this, properties);
 
     },
 
     /**
-    * Extende a classe
-    * @param property As novas propriedades
+     * Extends this class with members dictionary
+     * @param properties The members of the extended class
     **/
     extend: function () {
 
@@ -83,17 +91,20 @@ var PrototypeClass = {
     },
 
     /**
-    * Extende apenas o prototipo da classe
-    * @param prototype_properties As novas propriedades
+     * Extends only instance members (prototype) of the class
+     * @param properties The instance members of the extended class
     **/
-    pextend: function (prototype_properties) {
+    pextend: function (properties) {
         return this.extend({
-            prototype: prototype_properties
+            prototype: properties
         });
     },
 
     /**
-     * Incova um membro do objeto/prototipo
+     * Invokes a instance member (property or method)
+     * @param obj The instance
+     * @param memberName The member name
+     * @param args The arguments needed to call a method
     **/
     invoke_member: function (obj, memberName, args) {
         var member = this.prototype[memberName];
@@ -101,7 +112,9 @@ var PrototypeClass = {
     },
 
     /**
-     * Invoca um membro da classe
+     * Invokes a class member (property or method)
+     * @param memberName The member name
+     * @param args The arguments needed to call a method
     **/
     invoke_class_member: function (memberName, args) {
         var member = this[memberName];
@@ -109,7 +122,10 @@ var PrototypeClass = {
     },
 
     /**
-    * Invoca um membro do objeto/prototipo pai
+     * Invokes a instance member (property or method) from father class context
+     * @param obj The instance
+     * @param memberName The member name
+     * @param args The arguments needed to call a method
     **/
     super: function (obj, memberName, args) {
         var super_class = Object.getPrototypeOf(this);
@@ -117,7 +133,9 @@ var PrototypeClass = {
     },
 
     /**
-    * Invoca um membro da classe pai
+     * Invokes a class member (property or method) from father class context
+     * @param memberName The member name
+     * @param args The arguments needed to call a method
     **/
     super_class_member: function (memberName, args) {
         var super_class = Object.getPrototypeOf(this);
@@ -125,36 +143,38 @@ var PrototypeClass = {
     },
 
     /**
-    * Verifica se o prototipo da classe corresponde ao prototipo do objeto
+     * Verifies if the type of an instance is this class
+     * @param obj The instance to be verified
     **/
     isPrototypeOf: function (obj) {
         return this.prototype.isPrototypeOf(obj);
     },
 
     /**
-    * Converte as propriedades de uma classe para o estilo descritivo
+     * Converts a members dictionary to another with descriptive style
+     * @param properties The members to be converted
     **/
-    descriptoralize: function (class_properties) {
+    descriptoralize: function (properties) {
 
-        for (var key in class_properties.prototype) {
-            class_properties.prototype[key] = {
-                value: class_properties.prototype[key],
+        for (var key in properties.prototype) {
+            properties.prototype[key] = {
+                value: properties.prototype[key],
                 enumerable: true,
                 configurable: true,
                 writable: true
             }
         }
 
-        for (var key in class_properties){                
-            class_properties[key] = {
-                value: class_properties[key],
+        for (var key in properties){                
+            properties[key] = {
+                value: properties[key],
                 enumerable: true,
                 configurable: true,
                 writable: true
             }
         }
 
-        return class_properties;
+        return properties;
 
     }
 
