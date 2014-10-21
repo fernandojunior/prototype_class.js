@@ -21,7 +21,7 @@ Switch the branch to get the current version.
 Use
 ---
 
-Just Load the script prototype_class.js or prototype_class.min.js in your html file. See full examples in "examples" folder.
+Just load the script prototype_class.js or prototype_class.min.js in your html file. See full examples in "examples" folder.
 
 Keywords
 --------
