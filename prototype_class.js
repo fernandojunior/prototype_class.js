@@ -79,7 +79,7 @@ var PrototypeClass = {
             var properties = arguments[1];
 
             if (options.scope !== "undefined" && options.scope === "prototype") {
-                return this.pextend(properties);
+                return this.extend_prototype(properties);
             } else if (options.scope !== "undefined" && options.scope === "all") {
                 return this.dextend(this.descriptoralize(properties));
             }
@@ -94,7 +94,7 @@ var PrototypeClass = {
      * Extends only instance members (prototype) of the class
      * @param properties The instance members of the extended class
     **/
-    pextend: function (properties) {
+    extend_prototype: function (properties) {
         return this.extend({
             prototype: properties
         });

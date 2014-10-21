@@ -106,7 +106,7 @@ console.log("\n");
 /**
  * Extended Class (only prototype) from Filho
 **/
-var Neto = Filho.pextend({
+var Neto = Filho.extend_prototype({
     id: 123,
     hello: function() {
 
