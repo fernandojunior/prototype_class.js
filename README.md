@@ -18,8 +18,6 @@ Version
 
 Switch the branch to get the current version.
 
-Current version: v0.0.1
-
 Use
 ---
 
