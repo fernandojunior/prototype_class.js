@@ -11,9 +11,9 @@ var HelloWorld = PrototypeClass.extend({
     prototype :{
 
         /**
-         * Instance initializer
+         * Instance constructor
         **/
-        initialize: function (msg){
+        constructor: function (msg){
             console.log("Initializing..." + msg);
         },
 

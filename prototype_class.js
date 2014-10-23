@@ -11,9 +11,9 @@ var PrototypeClass = {
     prototype : {
 
         /**
-         * Initializes an instance
+         * Constructs an instance
         **/
-        initialize: function () {
+        constructor: function () {
         },
 
         /**
@@ -43,13 +43,13 @@ var PrototypeClass = {
     },
 
     /**
-     * Constructs and initializes an instance of this class
-     * @param arguments The arguments needed to initialize the instance
+     * Creates and constructs an instance of this class
+     * @param arguments The arguments needed to construct an instance
     **/
     create: function () {
         var instance = Object.create(this.prototype);
         instance.class = this;
-        instance.initialize.apply(instance, arguments);
+        instance.constructor.apply(instance, arguments);
         return instance;
     },
 
@@ -138,7 +138,7 @@ var PrototypeClass = {
     },
 
     /**
-     * Converts a members dictionary to another with descriptive style
+     * Converts (lazy) a members dictionary to another with descriptive style
      * @param properties The members to be converted
     **/
     descriptoralize: function (properties) {
