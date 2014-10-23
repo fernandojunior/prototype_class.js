@@ -3,7 +3,7 @@
  * programming features. It is based on Object and Property Descriptors of ECMA5.
  * @author Fernando Felix do Nacimento Junior
 **/
-var PrototypeClass = {
+var Class = {
 
     /**
     * Dictionary to define instance members (properties or methods)

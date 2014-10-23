@@ -1,7 +1,7 @@
 # prototype_class.js
 
 Prototype_class is a JavaScript library that provides oriented object programming features.
-It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.340 kb.
+It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.331 kb.
 
 ## Features
 
@@ -26,7 +26,7 @@ See an example bellow. There are others at "examples" folder.
 ```js
 
 // the class
-var Hello = PrototypeClass.extend({
+var Hello = Class.extend({
 
     // instance members
     prototype :{

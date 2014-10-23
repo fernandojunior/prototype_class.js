@@ -3,7 +3,7 @@
 /**
 * Father Class
 **/
-var Father = PrototypeClass.extend({
+var Father = Class.extend({
 
     prototype: {
 

@@ -3,7 +3,7 @@
 /**
  * Hello World Class
 **/
-var HelloWorld = PrototypeClass.extend({
+var HelloWorld = Class.extend({
 
     /**
      * Dictionary to define instance properties and methods
