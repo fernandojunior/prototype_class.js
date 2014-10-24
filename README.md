@@ -115,7 +115,7 @@ There are others at "examples" folder.
 
 ## Keywords
 
-oriented object programming, javascript, class, prototype, ecma5
+oriented object programming, oop, programação orientada a objetos, poo, javascript, class, prototype, ecma5
 
 ## License
 
