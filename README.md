@@ -5,11 +5,11 @@ It is based on Object and Property Descriptors of ECMA5. The compressed file cos
 
 ## Features
 
-    - Inheritance
-    - Super member (object/prototype and class) access
-    - Polymorphism
     - Constructor
-    - Class method (concept from python)
+    - Class members
+    - Inheritance
+    - Super member access
+    - Polymorphism
 
 ## Version
 
@@ -33,26 +33,28 @@ See an example bellow. There are others at "examples" folder.
 var Hello = Class.extend({
 
     // instance members
-    prototype :{
+    prototype: {
 
-        msg: "hello world",
+        constructor: function (msg) {
+            this.msg = msg;
+        },
 
-        show: function (){
+        say: function () {
             console.log(this.msg);
         }
 
     },
 
     // class method
-    world: function(){
+    world: function () {
         console.log("hi");
     }
 
 });
 
 Hello.world(); // call class mehtod
-var hello = Hello.create(); // create an instance
-hello.show(); // call instance method
+var hello = Hello.create("Hello World"); // create an instance
+hello.say(); // call instance method
 
 ```
 

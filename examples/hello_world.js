@@ -8,12 +8,12 @@ var HelloWorld = Class.extend({
     /**
      * Dictionary to define instance properties and methods
     **/
-    prototype :{
+    prototype: {
 
         /**
          * Instance constructor
         **/
-        constructor: function (msg){
+        constructor: function (msg) {
             console.log("Initializing..." + msg);
         },
 
@@ -26,7 +26,7 @@ var HelloWorld = Class.extend({
     /**
      * A class method named world
     **/
-    world: function(){
+    world: function () {
         console.log("World");
     }
 

@@ -152,7 +152,7 @@ var Class = {
             }
         }
 
-        for (var key in properties){                
+        for (var key in properties) {
             properties[key] = {
                 value: properties[key],
                 enumerable: true,

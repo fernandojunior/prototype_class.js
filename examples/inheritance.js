@@ -15,14 +15,14 @@ var Father = Class.extend({
         /**
          * Instance method
         **/
-        hello: function() {
+        hello: function () {
             console.log('Father instance method (hello). My ID is ' + this.id); 
         },
 
         /**
          * Another instance method
         **/
-        father_instance_method: function() {
+        father_instance_method: function () {
             console.log("Father instance method.");
         }
 
@@ -31,14 +31,14 @@ var Father = Class.extend({
     /**
      * Class method
     **/
-    hello: function() {
+    hello: function () {
         console.log('Father class method (hello).'); 
     },
 
     /**
      * Another class method
     **/
-    father_class_method: function() {
+    father_class_method: function () {
         console.log("father class method");
     }
 
@@ -63,7 +63,7 @@ var Filho = Father.extend({
         /**
          * Instance method overwriting
         **/
-        hello: function() { 
+        hello: function () { 
 
             console.log('Filho instance method overwrite (hello).'); 
 
@@ -92,7 +92,7 @@ var Filho = Father.extend({
     /**
      * Class method overwriting
     **/
-    hello: function(){
+    hello: function (){
         console.log("Filho class method (hello)");
     },
 
@@ -108,7 +108,7 @@ console.log("\n");
 **/
 var Neto = Filho.simple_extend({
     id: 123,
-    hello: function() {
+    hello: function () {
 
         console.log('Neto instance method. My ID is ' + this.id); 
 
