@@ -1,7 +1,7 @@
 # prototype_class.js
 
 JavaScript library that provides oriented object programming features.
-It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.328 kb.
+It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.034 kb.
 
 ## Features
 
@@ -85,7 +85,7 @@ var Student = Person.simple_extend({
     courses: [],
 
     constructor: function () {
-        Student.super(this, "constructor", arguments); // super constructor
+        this.super("constructor", arguments); // super constructor
     },
 
     addCourse: function (course) {

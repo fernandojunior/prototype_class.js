@@ -25,19 +25,12 @@ var Class = {
         },
 
         /**
-         * Invokes an instance member from father class context
-         * @param arguments(0) The member name
-         * @param arguments(1...) The member arguments
-         * @deprecated not stable
+         * Access super instance member
+         * @param method_name Method name
+         * @param args method arguments
         **/
-        super: function () {
-            var arguments = [].splice.call(arguments, 0);
-            var memberName = arguments[0];
-            var args = [];
-            if (arguments.length > 1) {
-                args = arguments.slice(1, arguments.length);
-            }
-            return this.class.super(this, memberName, args);
+        super: function (method_name, args) {
+            return this.class.super(method_name, this, args);
         }
 
     },
@@ -88,45 +81,13 @@ var Class = {
     },
 
     /**
-     * Invokes a instance member (property or method)
+     * Access super instance method
+     * @param method_name The method name
      * @param obj The instance
-     * @param memberName The member name
      * @param args The arguments needed to call a method
     **/
-    invoke_member: function (obj, memberName, args) {
-        var member = this.prototype[memberName];
-        return member.apply(obj, args); // valor de retorno caso o membro seja "retornable"
-    },
-
-    /**
-     * Invokes a class member (property or method)
-     * @param memberName The member name
-     * @param args The arguments needed to call a method
-    **/
-    invoke_class_member: function (memberName, args) {
-        var member = this[memberName];
-        return member.apply(args); // valor de retorno caso o membro seja "retornable"
-    },
-
-    /**
-     * Invokes a instance member (property or method) from father class context
-     * @param obj The instance
-     * @param memberName The member name
-     * @param args The arguments needed to call a method
-    **/
-    super: function (obj, memberName, args) {
-        var super_class = Object.getPrototypeOf(this);
-        return super_class.invoke_member(obj, memberName, args); // valor de retorno caso o membro seja "retornable"
-    },
-
-    /**
-     * Invokes a class member (property or method) from father class context
-     * @param memberName The member name
-     * @param args The arguments needed to call a method
-    **/
-    super_class_member: function (memberName, args) {
-        var super_class = Object.getPrototypeOf(this);
-        return super_class.invoke_class_member(memberName, args); // valor de retorno caso o membro seja "retornable"
+    super: function (method_name, obj, args) {
+	return Super(this.prototype)[method_name].apply(obj, args);
     },
 
     /**
@@ -165,4 +126,11 @@ var Class = {
 
     }
 
+};
+
+/**
+ * Access super class members
+**/
+Super = function (cls) {
+    return Object.getPrototypeOf(cls);
 };

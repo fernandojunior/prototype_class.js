@@ -71,12 +71,12 @@ var Filho = Father.extend({
 
             console.log("Filho instance method -> Father class method.")
             Father.father_class_method(); // or
-            Father.invoke_class_member("father_class_method"); // or
-            Filho.super_class_member("father_class_method");
+            Super(Filho).father_class_method();
 
             console.log("Filho instance method -> Father instance method.")
-            Father.invoke_member(this, "hello"); // or
-            Filho.super(this, "hello");
+            Super(Filho.prototype).hello.apply(this); // or
+            Filho.super("hello", this); // or
+            this.super("hello");
 
         },
 
@@ -113,16 +113,16 @@ var Neto = Filho.simple_extend({
         console.log('Neto instance method. My ID is ' + this.id); 
 
         console.log("Neto instance method -> Father class method.")
-        Father.invoke_class_member("father_class_method"); // or
-        Filho.super_class_member("father_class_method");
+        Super(Filho).father_class_method();
 
         console.log("Neto instance method -> Father instance method")
-        Father.invoke_member(this, "father_instance_method"); // or
-        Filho.super(this, "father_instance_method");
+        Super(Filho.prototype).father_instance_method.apply(this); // or
+        Filho.super("father_instance_method", this);
 
         console.log("Neto instance method -> Filho instance method")
-        Filho.invoke_member(this, "filho_instance_method");
-        Neto.super(this, "filho_instance_method");
+        Super(Neto.prototype).filho_instance_method.apply(this); // or
+        Neto.super("filho_instance_method", this); // or
+        this.super("filho_instance_method");
 
     }
 });
