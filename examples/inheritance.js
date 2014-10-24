@@ -56,12 +56,12 @@ var Filho = Father.extend({
     prototype: {
 
         /**
-         * Instance property overwriting
+         * Instance property overriding
         **/
         id: 333,
 
         /**
-         * Instance method overwriting
+         * Instance method overriding
         **/
         hello: function () { 
 
@@ -90,7 +90,7 @@ var Filho = Father.extend({
     },
 
     /**
-     * Class method overwriting
+     * Class method overriding
     **/
     hello: function (){
         console.log("Filho class method (hello)");

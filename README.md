@@ -23,9 +23,9 @@ Load the script prototype_class.js or prototype_class.min.js in your html file.
 <script src="prototype_class.js"></script>
 ```
 
-## Example
+## Examples
 
-See an example bellow. There are others at "examples" folder.
+See a hello world example below.
 
 ```js
 
@@ -57,6 +57,61 @@ var hello = Hello.create("Hello World"); // create an instance
 hello.say(); // call instance method
 
 ```
+
+See an inheritance example below.
+
+```js
+
+// Person class. Extends whole Class members
+var Person = Class.extend({
+
+    prototype: {
+
+        constructor: function (name) {
+            this.name = name;
+        },
+
+        toString: function () {
+            return "name: " + this.name;
+        }
+
+    } 
+
+});
+
+// Student class. Extends only Person prototype member
+var Student = Person.simple_extend({
+
+    courses: [],
+
+    constructor: function () {
+        Student.super(this, "constructor", arguments); // super constructor
+    },
+
+    addCourse: function (course) {
+        this.courses.push(course);
+    },
+
+    // super method overriding
+    toString: function () {
+        return "name: " + this.name + "; courses: " + this.courses;
+    }
+
+})
+
+var joe = Person.create("Joe");
+
+var anita = Student.create("Anita");
+anita.addCourse("Math");
+anita.addCourse("Biology");
+
+// show instances
+console.log(joe.toString());
+console.log(anita.toString());
+
+```
+
+There are others at "examples" folder.
 
 ## Keywords
 
