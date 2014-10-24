@@ -106,7 +106,7 @@ console.log("\n");
 /**
  * Extended Class (only prototype) from Filho
 **/
-var Neto = Filho.extend_prototype({
+var Neto = Filho.simple_extend({
     id: 123,
     hello: function() {
 

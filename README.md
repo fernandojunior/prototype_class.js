@@ -1,14 +1,14 @@
 # prototype_class.js
 
-Prototype_class is a JavaScript library that provides oriented object programming features.
-It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.331 kb.
+JavaScript library that provides oriented object programming features.
+It is based on Object and Property Descriptors of ECMA5. The compressed file costs only 1.328 kb.
 
 ## Features
 
     - Inheritance
     - Super member (object/prototype and class) access
     - Polymorphism
-    - Constructor/initializer
+    - Constructor
     - Class method (concept from python)
 
 ## Version
@@ -18,6 +18,10 @@ Switch the branch menu to get the current version.
 ## Use
 
 Load the script prototype_class.js or prototype_class.min.js in your html file.
+
+```html
+<script src="prototype_class.js"></script>
+```
 
 ## Example
 
@@ -33,28 +37,32 @@ var Hello = Class.extend({
 
         msg: "hello world",
 
-        show: function (custom){
-            console.log(this.msg + " " + custom);
+        show: function (){
+            console.log(this.msg);
         }
 
     },
 
     // class method
-    hi: function(){
+    world: function(){
         console.log("hi");
     }
 
 });
 
+Hello.world(); // call class mehtod
 var hello = Hello.create(); // create an instance
-hello.show("Fulano"); // call instance method
-Hello.hi(); // call class mehtod
+hello.show(); // call instance method
 
 ```
 
 ## Keywords
 
 oriented object programming, javascript, class, prototype, ecma5
+
+## License
+
+Released under The MIT License.
 
 ## References
 

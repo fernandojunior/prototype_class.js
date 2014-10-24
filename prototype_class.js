@@ -81,7 +81,7 @@ var Class = {
      * Extends only instance members (prototype) of the class
      * @param properties The instance members of the extended class
     **/
-    extend_prototype: function (properties) {
+    simple_extend: function (properties) {
         return this.extend({
             prototype: properties
         });
